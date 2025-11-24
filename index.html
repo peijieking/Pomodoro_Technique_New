@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>番茄钟 - 提高工作效率</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.9.1/dist/chart.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🍅 番茄钟</h1>
+            <p>专注工作，高效休息</p>
+        </header>
+
+        <main>
+            <div class="timer-section">
+                <div class="timer-display">
+                    <div class="timer-circle">
+                        <div class="time-left">
+                            <span id="minutes">25</span>:<span id="seconds">00</span>
+                        </div>
+                        <div class="timer-label">
+                            <span id="timer-mode">专注时间</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="timer-controls">
+                    <button id="start-btn" class="btn btn-primary">开始</button>
+                    <button id="pause-btn" class="btn btn-secondary">暂停</button>
+                    <button id="reset-btn" class="btn btn-secondary">重置</button>
+                </div>
+            </div>
+
+            <div class="settings-section">
+                <h2>自定义设置</h2>
+                <div class="settings-grid">
+                    <div class="setting-item">
+                        <label for="focus-duration">专注时长 (分钟):</label>
+                        <input type="number" id="focus-duration" min="1" max="60" value="25">
+                    </div>
+                    <div class="setting-item">
+                        <label for="break-duration">休息时长 (分钟):</label>
+                        <input type="number" id="break-duration" min="1" max="30" value="5">
+                    </div>
+                </div>
+                <button id="save-settings" class="btn btn-primary">保存设置</button>
+            </div>
+
+            <div class="stats-section">
+                <h2>使用统计</h2>
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-value" id="today-sessions">0</div>
+                        <div class="stat-label">今日完成</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value" id="total-sessions">0</div>
+                        <div class="stat-label">总完成数</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value" id="weekly-average">0</div>
+                        <div class="stat-label">周平均</div>
+                    </div>
+                </div>
+                <div class="chart-container">
+                    <canvas id="weekly-chart"></canvas>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
