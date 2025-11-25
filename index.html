@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>番茄钟 - Pomodoro Timer</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🍅 番茄钟</h1>
+            <p>专注25分钟，休息5分钟</p>
+        </header>
+
+        <main>
+            <!-- 计时器显示 -->
+            <div class="timer-container">
+                <div class="timer-display">
+                    <div class="time-left" id="timeLeft">25:00</div>
+                    <div class="timer-mode" id="timerMode">专注模式</div>
+                </div>
+
+                <!-- 控制按钮 -->
+                <div class="controls">
+                    <button id="startBtn" class="btn btn-primary">开始</button>
+                    <button id="pauseBtn" class="btn btn-secondary" disabled>暂停</button>
+                    <button id="resetBtn" class="btn btn-secondary">重置</button>
+                </div>
+            </div>
+
+            <!-- 自定义时长设置 -->
+            <div class="settings">
+                <h2>自定义时长</h2>
+                <div class="setting-group">
+                    <label for="focusTime">专注时长 (分钟):</label>
+                    <div class="time-input-group">
+                        <button class="time-btn" id="focusDecrease">-</button>
+                        <input type="number" id="focusTime" min="1" max="60" value="25">
+                        <button class="time-btn" id="focusIncrease">+</button>
+                    </div>
+                    <div class="quick-select">
+                        <button class="quick-btn" data-target="focus" data-value="25">25</button>
+                        <button class="quick-btn" data-target="focus" data-value="50">50</button>
+                        <button class="quick-btn" data-target="focus" data-value="60">60</button>
+                    </div>
+                </div>
+                <div class="setting-group">
+                    <label for="breakTime">休息时长 (分钟):</label>
+                    <div class="time-input-group">
+                        <button class="time-btn" id="breakDecrease">-</button>
+                        <input type="number" id="breakTime" min="1" max="30" value="5">
+                        <button class="time-btn" id="breakIncrease">+</button>
+                    </div>
+                    <div class="quick-select">
+                        <button class="quick-btn" data-target="break" data-value="5">5</button>
+                        <button class="quick-btn" data-target="break" data-value="10">10</button>
+                        <button class="quick-btn" data-target="break" data-value="15">15</button>
+                    </div>
+                </div>
+                <button id="saveSettingsBtn" class="btn btn-primary">保存设置</button>
+            </div>
+
+            <!-- 统计信息 -->
+            <div class="stats">
+                <h2>使用统计</h2>
+                <div class="stats-summary">
+                    <div class="stat-item">
+                        <span class="stat-label">今日完成番茄数:</span>
+                        <span class="stat-value" id="todayPomodoros">0</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label">本周完成番茄数:</span>
+                        <span class="stat-value" id="weekPomodoros">0</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label">总完成番茄数:</span>
+                        <span class="stat-value" id="totalPomodoros">0</span>
+                    </div>
+                </div>
+                <canvas id="pomodoroChart" width="400" height="200"></canvas>
+            </div>
+        </main>
+    </div>
+
+    <!-- 提醒弹窗 -->
+    <div class="modal" id="notificationModal">
+        <div class="modal-content">
+            <h3 id="modalTitle">时间到！</h3>
+            <p id="modalMessage">专注时间结束，开始休息吧！</p>
+            <button id="closeModalBtn" class="btn btn-primary">确定</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
