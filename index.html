@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>番茄钟 - Pomodoro Timer</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🍅 番茄钟</h1>
+            <p>专注25分钟，休息5分钟</p>
+        </header>
+
+        <main>
+            <!-- 计时器显示 -->
+            <section class="timer-section">
+                <div class="timer-display">
+                    <div class="timer-circle">
+                        <div class="time-left">
+                            <span id="minutes">25</span>:<span id="seconds">00</span>
+                        </div>
+                    </div>
+                    <div class="timer-status" id="timerStatus">准备开始</div>
+                </div>
+
+                <!-- 控制按钮 -->
+                <div class="controls">
+                    <button id="startBtn" class="btn btn-primary">开始</button>
+                    <button id="pauseBtn" class="btn btn-secondary" disabled>暂停</button>
+                    <button id="resetBtn" class="btn btn-secondary">重置</button>
+                </div>
+            </section>
+
+            <!-- 自定义时长 -->
+            <section class="settings-section">
+                <h2>自定义时长</h2>
+                <div class="settings-grid">
+                    <div class="setting-item">
+                        <label for="focusTime">专注时间 (分钟):</label>
+                        <input type="number" id="focusTime" min="1" max="60" value="25">
+                        <div class="preset-times" id="focusPresetTimes">
+                            <button class="preset-btn" data-time="25">25</button>
+                            <button class="preset-btn" data-time="30">30</button>
+                            <button class="preset-btn" data-time="45">45</button>
+                            <button class="preset-btn" data-time="60">60</button>
+                        </div>
+                    </div>
+                    <div class="setting-item">
+                        <label for="breakTime">休息时间 (分钟):</label>
+                        <input type="number" id="breakTime" min="1" max="30" value="5">
+                        <div class="preset-times" id="breakPresetTimes">
+                            <button class="preset-btn" data-time="5">5</button>
+                            <button class="preset-btn" data-time="10">10</button>
+                            <button class="preset-btn" data-time="15">15</button>
+                            <button class="preset-btn" data-time="20">20</button>
+                        </div>
+                    </div>
+                </div>
+                <button id="saveSettingsBtn" class="btn btn-primary">保存设置</button>
+            </section>
+
+            <!-- 统计信息 -->
+            <section class="stats-section">
+                <h2>使用统计</h2>
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-value" id="totalPomodoros">0</div>
+                        <div class="stat-label">今日完成番茄数</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value" id="totalTime">0</div>
+                        <div class="stat-label">今日专注时间 (分钟)</div>
+                    </div>
+                </div>
+                <div class="chart-container">
+                    <canvas id="pomodoroChart"></canvas>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- 自定义弹窗 -->
+    <div id="customModal" class="modal">
+        <div class="modal-content">
+            <span id="modalMessage"></span>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
